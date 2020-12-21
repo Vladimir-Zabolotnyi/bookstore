@@ -4,12 +4,14 @@ package com.zabolotnyi.bookstore.services;
 import com.zabolotnyi.bookstore.dao.BookDao;
 import com.zabolotnyi.bookstore.dao.BookRepository;
 import com.zabolotnyi.bookstore.model.Book;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class BookServiceImpl implements BookService {
     private BookDao bookDao;
@@ -37,6 +39,7 @@ public class BookServiceImpl implements BookService {
         if (bookToBeUpdated.isPresent()) {
             bookToSave = bookToBeUpdated.get();
         }
+        else log.error("Book not found ");
         bookToSave.setTitle(book.getTitle());
         bookToSave.setIssueYear(book.getIssueYear());
         bookToSave.setPrice(book.getPrice());
