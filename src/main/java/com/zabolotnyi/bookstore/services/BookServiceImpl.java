@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -31,13 +32,17 @@ public class BookServiceImpl implements BookService {
     @Override
 
     public void updateBook(Book book) {
-        Book book1 = bookRepository.findById(book.getId()).get();
-        book1.setTitle(book.getTitle());
-        book1.setIssueYear(book.getIssueYear());
-        book1.setPrice(book.getPrice());
-        book1.setId(book.getId());
-        book1.setAuthor(book.getAuthor());
-        bookRepository.save(book1);
+        Book bookToSave = null;
+        Optional<Book> bookToBeUpdated = bookRepository.findById(book.getId());
+        if (bookToBeUpdated.isPresent()) {
+            bookToSave = bookToBeUpdated.get();
+        }
+        bookToSave.setTitle(book.getTitle());
+        bookToSave.setIssueYear(book.getIssueYear());
+        bookToSave.setPrice(book.getPrice());
+        bookToSave.setId(book.getId());
+        bookToSave.setAuthor(book.getAuthor());
+        bookRepository.save(bookToSave);
 
     }
 

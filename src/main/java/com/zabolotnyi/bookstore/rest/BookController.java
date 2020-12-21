@@ -13,8 +13,6 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    //@GetMapping - что лучше использовать
-
     @RequestMapping(value = "/book", method = RequestMethod.GET)
     public @ResponseBody List<Book> getBook() {
         return bookService.getAllBooks();
