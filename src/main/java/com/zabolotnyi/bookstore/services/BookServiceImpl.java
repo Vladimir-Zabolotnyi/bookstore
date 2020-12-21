@@ -27,7 +27,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void addBook(Book book) {
-//        bookDao.addBook(book);
+
         bookRepository.save(book);
     }
 
@@ -52,7 +52,6 @@ public class BookServiceImpl implements BookService {
     @Override
 
     public boolean removeBook(Long id) {
-//        return bookDao.removeBook(id);
         bookRepository.deleteById(id);
         return true;
     }
@@ -60,9 +59,9 @@ public class BookServiceImpl implements BookService {
     @Override
 
     public Book getBookById(Long id) {
-        return bookRepository.findById(id).get();
+        return bookRepository.findById(id).orElse(null);
 
-//        return bookDao.getBookById(id);
+
     }
 
     @Override
