@@ -1,8 +1,7 @@
 package com.zabolotnyi.bookstore.model;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,8 +9,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "BOOKS")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Book {
     @Id
     @Column(name = "ID")

@@ -3,7 +3,6 @@ package com.zabolotnyi.bookstore.services;
 import com.zabolotnyi.bookstore.model.Book;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BookService {
     void addBook(Book book);
@@ -12,7 +11,7 @@ public interface BookService {
 
     boolean removeBook(Long id);
 
-    Optional<Book> getBookById(Long id);
+    Book getBookById(Long id);
 
     List<Book> getAllBooks();
 }
