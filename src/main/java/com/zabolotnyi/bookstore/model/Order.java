@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Entity
@@ -27,8 +28,8 @@ public class Order {
     })
     private AddressOfDelivery addressOfDelivery;
 
-//    Как это сделать
-//    private List<Book> listOfBookBoughtByClient;
+    @OneToMany
+    private List<Book> listOfBookBoughtByClient;
 
     private BigDecimal valueOfTheOrder;
 }
