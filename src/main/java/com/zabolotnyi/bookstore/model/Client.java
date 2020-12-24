@@ -11,20 +11,20 @@ import java.util.Date;
 public class Client {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID",length = 32,nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME",length = 32,nullable = false)
     private String name;
 
-    @Column(name = "SURNAME")
+    @Column(name = "SURNAME",length = 32,nullable = false)
     private String surname;
 
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL",length = 32,nullable = false)
     private String email;
 
-    @Column(name = "BIRTHDAY")
+    @Column(name = "BIRTHDAY",length = 32,nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date dateOfBirth;
 }

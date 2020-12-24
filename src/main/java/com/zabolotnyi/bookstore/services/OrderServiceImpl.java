@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +33,6 @@ public class OrderServiceImpl implements OrderService {
         orderToSave.setAddressOfDelivery(order.getAddressOfDelivery());
         orderToSave.setClient(order.getClient());
         orderToSave.setValueOfTheOrder(order.getValueOfTheOrder());
-
         return orderRepository.save(orderToSave);
     }
 
