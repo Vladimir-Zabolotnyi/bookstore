@@ -1,39 +1,30 @@
 package com.zabolotnyi.bookstore.services;
 
 
-import com.zabolotnyi.bookstore.dao.BookDao;
 import com.zabolotnyi.bookstore.dao.BookRepository;
 import com.zabolotnyi.bookstore.model.Book;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 @Service
 public class BookServiceImpl implements BookService {
-    private BookDao bookDao;
+
 
     @Autowired
     private BookRepository bookRepository;
 
-    @Autowired
-    public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
-    }
-
 
     @Override
-    public void addBook(Book book) {
-
-        bookRepository.save(book);
+    public Book addBook(Book book) {
+          return bookRepository.save(book);
     }
 
     @Override
-
-    public void updateBook(Book book) {
+    public Book updateBook(Book book) {
         Book bookToSave = null;
         Optional<Book> bookToBeUpdated = bookRepository.findById(book.getId());
         if (bookToBeUpdated.isPresent()) {
@@ -43,30 +34,33 @@ public class BookServiceImpl implements BookService {
         bookToSave.setTitle(book.getTitle());
         bookToSave.setIssueYear(book.getIssueYear());
         bookToSave.setPrice(book.getPrice());
-        bookToSave.setId(book.getId());
         bookToSave.setAuthor(book.getAuthor());
-        bookRepository.save(bookToSave);
-
+        return bookRepository.save(bookToSave);
     }
 
     @Override
-
-    public boolean removeBook(Long id) {
+    public String removeBook(Long id) {
         bookRepository.deleteById(id);
-        return true;
+       return "Deleted";
     }
 
     @Override
-
     public Book getBookById(Long id) {
         return bookRepository.findById(id).orElse(null);
-
-
     }
 
     @Override
-
     public List<Book> getAllBooks() {
         return (List<Book>) bookRepository.findAll();
+    }
+
+    @Override
+    public Iterable<Book> getBooksByTitle(String search) {
+        return  bookRepository.findBookByTitleLike("%" + search + "%");
+    }
+
+    @Override
+    public Book getBookByAuthor(String author) {
+        return bookRepository.findBookByAuthor("%" + author + "%");
     }
 }

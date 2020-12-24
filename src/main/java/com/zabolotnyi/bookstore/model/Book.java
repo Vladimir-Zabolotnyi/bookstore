@@ -1,6 +1,5 @@
 package com.zabolotnyi.bookstore.model;
 
-import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,16 +12,16 @@ import java.math.BigDecimal;
 public class Book {
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "TITLE")
+    @Column(name = "TITLE",length = 32)
     private String title;
 
-    @Column(name = "AUTHOR")
-    private String author;
+    @ManyToOne
+    private Author author;
 
-    @Column(name = "YEAR")
+    @Column(name = "YEAR",length = 4)
     private String issueYear;
 
     @Column(name = "PRICE")

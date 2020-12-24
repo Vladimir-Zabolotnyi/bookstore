@@ -29,17 +29,23 @@ public class BookController {
         return "Deleted";
     }
 
-
     @RequestMapping(value = "/book", method = RequestMethod.PUT)
-    public  String updateBook(@RequestBody Book book) {
-        bookService.updateBook(book);
-        return "Updated";
+    public  Book  updateBook(@RequestBody Book book) {
+       return bookService.updateBook(book);
     }
 
 
     @RequestMapping(value = "/book", method = RequestMethod.POST)
-    public @ResponseBody String addBook(@RequestBody Book book) {
-        bookService.addBook(book);
-        return "Added";
+    public @ResponseBody Book addBook(@RequestBody Book book) {
+        return bookService.addBook(book);
+    }
+
+    @RequestMapping(value = "/book/search", method = RequestMethod.GET)
+    public @ResponseBody Iterable<Book> getBookByTitle(@RequestParam(value = "search") String search) {
+        return bookService.getBooksByTitle(search);
+    }
+    @RequestMapping(value = "book/author",method = RequestMethod.GET)
+    public @ResponseBody Book getBookByAuthor(@RequestParam(value = "author") String author){
+    return bookService.getBookByAuthor(author);
     }
 }
