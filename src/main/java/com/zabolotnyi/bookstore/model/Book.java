@@ -1,9 +1,15 @@
 package com.zabolotnyi.bookstore.model;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "BOOKS")
@@ -19,7 +25,7 @@ public class Book {
     private String title;
 
     @ManyToOne()
-    @Column(name = "AUTHOR",nullable = false)
+    @JoinColumn(name = "author_id", nullable = false)
     private Author author;
 
     @Column(name = "YEAR",length = 4)
